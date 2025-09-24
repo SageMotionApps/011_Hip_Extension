@@ -1,0 +1,99 @@
+{
+  "user_guide_file": "Template App Guide.pdf",
+  "app_name": "Template App",
+  "app_version": "0_0",
+  "app_id": "000",
+  "version_id": "00000",
+  "validated_version_range": [
+    "3.20.1",
+    "4.1.0"
+  ],
+  "app_description": "This is a template app. Put the real app description here.",
+  "parameters_setting": [
+    [
+      "Save Options",
+      {
+        "source": "save_mode",
+        "title": "Save Mode",
+        "type": "combo",
+        "validation": [
+          "csv",
+          "h5",
+          "xlsx",
+          "none"
+        ],
+        "description": "Save file in specified format"
+      }
+    ],
+    [
+      "Test Settings",
+      {
+        "source": "feedback_enabled",
+        "title": "Feedback On",
+        "type": "bool",
+        "description": "Enable/Disable feedback"
+      },
+      {
+        "source": "audio_prompts_enabled",
+        "title": "Enable Audio Prompts",
+        "type": "bool",
+        "description": "Enable audio prompts such as 'turn your head to the left' is said."
+      },
+      {
+        "source": "stop_time",
+        "title": "Time Limit",
+        "type": "int",
+        "description": "If the app should stop after a certain time limit, enter that amount here. A '0' or empty field will indicate no time limit."
+      }
+    ]
+  ],
+  "user_fields": [
+    {
+      "name": "time",
+      "data_type": "float",
+      "size": 1
+    },
+    {
+      "name": "example_int",
+      "data_type": "int",
+      "size": 1
+    },
+    {
+      "name": "example_bool",
+      "data_type": "bool",
+      "size": 1
+    },
+    {
+      "name": "feedback_enabled",
+      "data_type": "bool",
+      "size": 1
+    },
+    {
+      "name": "audio_prompts_enabled",
+      "data_type": "bool",
+      "size": 1
+    },
+    {
+      "name": "user_defined_status",
+      "data_type": "str",
+      "size": 1
+    },
+    {
+      "name": "annotations",
+      "data_type": "str",
+      "size": 1
+    },
+    {
+      "name": "audio_feedback",
+      "data_type": "str",
+      "size": 1
+    }
+  ],
+  "sensors": [
+    "sensor"
+  ],
+  "feedback": [
+    "feedback"
+  ],
+  "datarate": 100
+}
