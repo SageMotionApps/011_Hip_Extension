@@ -1,35 +1,47 @@
-**Note: Before you install an app that uses this template (for example, to edit the app on the hub), you should change the following things in the info.json file:**
+# 011_Hip Extension
 
-- app_name
-- app_version
-- app_id
-- version_id
+Measure and train left or right hip extension angle during walking or daily movement.
 
-All other things can be changed after the app is installed if editing code on the hub. Editing these after moving the app to the hub might cause problems.
+### Nodes Required: 4
+- **Sensing (2)**:
+  - pelvis (back center, switch pointing up)
+  - thigh (left or right lateral, switch pointing up)
+- **Feedback (2)**:
+  - feedback_min
+  - feedback_max
 
-# 000_Template_App
-
-This is a template app that can be used to create a new repo from. For the app guide, just make sure to edit then save the ppt as a pdf and delete the ppt.
-
-### Nodes Required: 3 
-- Sensing (#): 
-  - Node Name (displayed in the Node List Panel)
-- Feedback (#): 
-  - Node Name (displayed in the Node List Panel)
-  
+---
 
 ## Algorithm & Calibration
+
 ### Algorithm Information
-- None noted.
-### Calibration Process:
-- None noted.
+The app uses quaternion data from IMUs to calculate 3D joint angles. The orientation is converted into XYZ Euler angles, from which the sagittal plane (hip extension) angle is extracted. This angle reflects relative rotation between the thigh and pelvis segments.
+
+### Calibration Process
+On the first iteration, the app aligns sensor orientation to body segment alignment:
+- Calculates yaw offset between pelvis and thigh
+- Applies this alignment to correct global measurements
+- Uses predefined target orientation as a reference
+
+---
 
 ## Description of Data in Downloaded File
-- time (sec): time since trial start
-- index of raw sensor data
-- AccelX/Y/Z (m/s^2): raw acceleration data
-- GyroX/Y/Z (deg/s): raw gyroscope data
-- MagX/Y/Z (μT): raw magnetometer data
-- Quat1/2/3/4: quaternion data
-- Sampletime: timestamp of the sensor
-- Package: package number of the sensor
+
+### Calculated Fields
+- **time (sec)**: time since trial start
+- **Hip_ext (deg)**: hip flexion/extension angle
+- **Feedback_min**: minimum threshold used for feedback
+- **Feedback_max**: maximum threshold used for feedback
+
+### Sensor Raw Data Fields (repeated for each sensor)
+- SensorIndex
+- AccelX/Y/Z (m/s²)
+- GyroX/Y/Z (deg/s)
+- MagX/Y/Z (μT)
+- Quat1/2/3/4 (quaternion, scalar first order)
+- Sampletime (timestamp)
+- Package (packet number)
+
+
+## Development Notes
+The best place to start when developing a new app or modifying an existing one is the [SageMotion Documentation](http://docs.sagemotion.com/index.html) page.

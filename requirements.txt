@@ -1,2 +1,0 @@
-# Add your packages in this file either manually or by pip freeze > requirements.txt
-numpy==1.24.1
